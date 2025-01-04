@@ -1,0 +1,29 @@
+server:
+   port: 8090
+spring:
+  profiles:
+    active: dev
+  application:
+    name: my-research
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://localhost:8761/ # URL of the Eureka Server
+      register-with-eureka: true   # Register this service with Eureka
+      fetch-registry: true         # Fetch registry information from Eureka
+    instance:
+      instance-id: ${spring.application.name}:${server.port} # Unique instance ID
+      prefer-ip-address: true       # Use IP address instead of hostname
+      lease-renewal-interval-in-seconds: 30 # Frequency to renew lease
+      lease-expiration-duration-in-seconds: 90
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/my_java
+    username: jamir
+    password: Asm@786Najm@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
